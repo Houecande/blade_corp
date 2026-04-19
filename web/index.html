@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base href="$FLUTTER_BASE_HREF">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="BLADE CORP — Portfolio UI/UX & Développement par Armand Biljoric HOUECANDE">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="BLADE CORP — Portfolio">
+  <meta property="og:description" content="L'alliance du Design et du Code. UI/UX, Flutter, Dev Web.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png"/>
+
+  <title>BLADE CORP — Portfolio</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      background-color: #080B14;
+      margin: 0;
+      padding: 0;
+    }
+    #loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #080B14;
+      gap: 20px;
+    }
+    .loader-logo {
+      font-family: sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 4px;
+      color: #E2E8F0;
+    }
+    .loader-logo span { color: #00D4FF; }
+    .loader-bar {
+      width: 200px;
+      height: 2px;
+      background: #0F1729;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00D4FF, #8B5CF6);
+      border-radius: 2px;
+      animation: load 1.5s ease-in-out infinite;
+    }
+    @keyframes load {
+      0% { width: 0%; margin-left: 0; }
+      50% { width: 80%; margin-left: 0; }
+      100% { width: 0%; margin-left: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading">
+    <div class="loader-logo">BLADE <span>CORP</span>.</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  </div>
+
+  <script>
+    window.addEventListener('flutter-first-frame', function () {
+      document.getElementById('loading').remove();
+    });
+  </script>
+
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
