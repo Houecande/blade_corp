@@ -17,14 +17,10 @@ class ProjetsSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: isMobile ? 60 : 100,
       ),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [AppColors.bg, AppColors.bg2, AppColors.bg],
-        ),
+      decoration: const BoxDecoration(
+        color: AppColors.bg,
       ),
       child: Column(
         children: [
@@ -190,13 +186,13 @@ class _ProjectCardState extends State<_ProjectCard> {
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
               color: _hovered
-                  ? AppColors.cyan.withOpacity(0.3)
+                  ? AppColors.cyan.withValues(alpha: 0.3)
                   : AppColors.border,
             ),
             boxShadow: _hovered
                 ? [
                     BoxShadow(
-                      color: AppColors.cyan.withOpacity(0.07),
+                      color: AppColors.cyan.withValues(alpha: 0.07),
                       blurRadius: 24,
                       offset: const Offset(0, 8),
                     )
@@ -222,9 +218,9 @@ class _ProjectCardState extends State<_ProjectCard> {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: AppColors.violet.withOpacity(0.15),
+                        color: AppColors.violet.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(50),
-                        border: Border.all(color: AppColors.violet.withOpacity(0.3)),
+                        border: Border.all(color: AppColors.violet.withValues(alpha: 0.3)),
                       ),
                       child: const Text(
                         'En cours',
@@ -318,7 +314,7 @@ class _DesignProjectCardState extends State<_DesignProjectCard> {
             borderRadius: BorderRadius.circular(18),
             border: Border.all(
               color: _hovered
-                  ? AppColors.violet.withOpacity(0.4)
+                  ? AppColors.violet.withValues(alpha: 0.4)
                   : AppColors.border,
             ),
           ),

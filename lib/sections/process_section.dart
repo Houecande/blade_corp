@@ -42,14 +42,10 @@ class ProcessSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: isMobile ? 60 : 100,
       ),
       decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [AppColors.bg, AppColors.bg2, AppColors.bg],
-        ),
+        color: AppColors.bg,
       ),
       child: Column(
         children: [
@@ -147,8 +143,8 @@ class _ProcessCardState extends State<_ProcessCard> {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: _hovered
-                ? widget.step.color.withOpacity(0.3)
-                : AppColors.border.withOpacity(0.5),
+                ? widget.step.color.withValues(alpha: 0.3)
+                : AppColors.border.withValues(alpha: 0.5),
           ),
         ),
         child: Column(
@@ -159,7 +155,7 @@ class _ProcessCardState extends State<_ProcessCard> {
               style: GoogleFonts.syne(
                 fontSize: 13,
                 fontWeight: FontWeight.w700,
-                color: widget.step.color.withOpacity(0.5),
+                color: widget.step.color.withValues(alpha: 0.5),
                 letterSpacing: 1,
               ),
             ),
@@ -170,9 +166,9 @@ class _ProcessCardState extends State<_ProcessCard> {
               width: 64,
               height: 64,
               decoration: BoxDecoration(
-                color: widget.step.color.withOpacity(0.1),
+                color: widget.step.color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: widget.step.color.withOpacity(0.2)),
+                border: Border.all(color: widget.step.color.withValues(alpha: 0.2)),
               ),
               child: Icon(widget.step.icon, color: widget.step.color, size: 28),
             ),

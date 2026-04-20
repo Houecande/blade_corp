@@ -197,4 +197,12 @@ final List<StackCategory> stackCategories = [
       StackItem('Prototyping', Icons.touch_app_outlined),
     ],
   ),
+  StackCategory(
+    name: 'Outils & DevOps',
+    gradient: AppColors.gradCyan,
+    items: [
+      StackItem('Git', Icons.account_tree_outlined),
+      StackItem('GitHub', Icons.code_off_outlined),
+    ],
+  ),
 ];

@@ -47,6 +47,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 800;
     return Scaffold(
       backgroundColor: AppColors.bg,
       body: Stack(
@@ -56,13 +57,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
             top: -200,
             left: -100,
             child: Container(
-              width: 600,
-              height: 600,
+              width: isMobile ? 400 : 600,
+              height: isMobile ? 400 : 600,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    AppColors.violet.withOpacity(0.08),
+                    AppColors.violet.withValues(alpha: 0.06),
                     Colors.transparent,
                   ],
                 ),
@@ -73,13 +74,13 @@ class _PortfolioPageState extends State<PortfolioPage> {
             top: 300,
             right: -150,
             child: Container(
-              width: 500,
-              height: 500,
+              width: isMobile ? 300 : 500,
+              height: isMobile ? 300 : 500,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
                   colors: [
-                    AppColors.cyan.withOpacity(0.05),
+                    AppColors.cyan.withValues(alpha: 0.04),
                     Colors.transparent,
                   ],
                 ),
@@ -102,6 +103,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
               // Hero
               SliverToBoxAdapter(
                 child: ConstrainedBox(
+                  key: accueilKey,
                   constraints: BoxConstraints(
                     minHeight: MediaQuery.of(context).size.height - 72,
                   ),
@@ -154,9 +156,10 @@ class _SectionDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 800;
     return Container(
       height: 1,
-      margin: const EdgeInsets.symmetric(horizontal: 80),
+      margin: EdgeInsets.symmetric(horizontal: isMobile ? 24 : 80),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [

@@ -39,8 +39,8 @@ class _NavbarState extends State<Navbar> {
       height: 72,
       decoration: BoxDecoration(
         color: _scrolled
-            ? AppColors.bg.withOpacity(0.92)
-            : AppColors.bg.withOpacity(0.7),
+            ? AppColors.bg.withValues(alpha: 0.92)
+            : AppColors.bg.withValues(alpha: 0.7),
         border: Border(
           bottom: BorderSide(
             color: _scrolled ? AppColors.border : Colors.transparent,
@@ -89,6 +89,7 @@ class _NavbarState extends State<Navbar> {
             ),
             const Spacer(),
             if (!isMobile) ...[
+              _NavLink('Accueil', () => _scrollTo(accueilKey)),
               _NavLink('Expertise', () => _scrollTo(expertiseKey)),
               _NavLink('Projets', () => _scrollTo(projetsKey)),
               _NavLink('Stack', () => _scrollTo(stackKey)),
@@ -127,7 +128,7 @@ class _NavbarState extends State<Navbar> {
               ),
             ),
             const SizedBox(height: 24),
-            for (final item in ['Expertise', 'Projets', 'Stack', 'Process', 'Contact'])
+            for (final item in ['Accueil', 'Expertise', 'Projets', 'Stack', 'Process', 'Contact'])
               ListTile(
                 title: Text(item,
                     style: const TextStyle(color: AppColors.text, fontWeight: FontWeight.w600)),
@@ -135,6 +136,7 @@ class _NavbarState extends State<Navbar> {
                 onTap: () {
                   Navigator.pop(context);
                   final key = {
+                    'Accueil': accueilKey,
                     'Expertise': expertiseKey,
                     'Projets': projetsKey,
                     'Stack': stackKey,
@@ -214,7 +216,7 @@ class _DiscuterButtonState extends State<_DiscuterButton> {
           decoration: BoxDecoration(
             color: _hovered ? AppColors.text : Colors.transparent,
             borderRadius: BorderRadius.circular(50),
-            border: Border.all(color: AppColors.text.withOpacity(0.6)),
+            border: Border.all(color: AppColors.text.withValues(alpha: 0.6)),
           ),
           child: Text(
             'Discuter',

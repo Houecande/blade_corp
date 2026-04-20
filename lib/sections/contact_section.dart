@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../theme.dart';
 import '../widgets/common.dart';
 
@@ -44,12 +45,32 @@ class _ContactSectionState extends State<ContactSection> {
 
     final uri = Uri(
       scheme: 'mailto',
-      path: 'armandhouecande92@gmail.com',
+      path: 'armandhouecande9@gmail.com',
       query: 'subject=Portfolio Contact - $name&body=$message\n\nDe: $name ($email)',
     );
 
     if (await canLaunchUrl(uri)) {
       await launchUrl(uri);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Votre message a été bien envoyé !'),
+            backgroundColor: AppColors.cyan,
+          ),
+        );
+        _nameCtrl.clear();
+        _emailCtrl.clear();
+        _messageCtrl.clear();
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Impossible d\'ouvrir votre messagerie.'),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
     }
 
     setState(() => _sending = false);
@@ -64,21 +85,21 @@ class _ContactSectionState extends State<ContactSection> {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: isMobile ? 60 : 100,
       ),
       child: isMobile
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildLeft(),
-                const SizedBox(height: 48),
+                _buildLeft(isMobile),
+                const SizedBox(height: 40),
                 _buildForm(),
               ],
             )
           : Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(flex: 4, child: _buildLeft()),
+                Expanded(flex: 4, child: _buildLeft(isMobile)),
                 const SizedBox(width: 60),
                 Expanded(flex: 5, child: _buildForm()),
               ],
@@ -86,7 +107,7 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildLeft() {
+  Widget _buildLeft(bool isMobile) {
     return FadeInSection(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,7 +115,7 @@ class _ContactSectionState extends State<ContactSection> {
           Text(
             'Parlons de votre',
             style: GoogleFonts.syne(
-              fontSize: 40,
+              fontSize: isMobile ? 32 : 40,
               fontWeight: FontWeight.w800,
               color: AppColors.text,
               height: 1.1,
@@ -104,42 +125,42 @@ class _ContactSectionState extends State<ContactSection> {
             'projet',
             gradient: AppColors.gradCyan,
             style: GoogleFonts.syne(
-              fontSize: 40,
+              fontSize: isMobile ? 32 : 40,
               fontWeight: FontWeight.w800,
               height: 1.1,
             ),
           ),
-          const SizedBox(height: 20),
-          const Text(
+          const SizedBox(height: 16),
+          Text(
             'Que vous ayez une idée précise ou juste un début de concept, je serais ravi d\'échanger avec vous.',
             style: TextStyle(
               color: AppColors.muted,
               fontSize: 15,
-              height: 1.65,
+              height: isMobile ? 1.5 : 1.65,
             ),
           ),
-          const SizedBox(height: 36),
+          const SizedBox(height: 24),
 
           _ContactItem(
             icon: Icons.email_outlined,
             label: 'Email',
-            value: 'armandhouecande92@gmail.com',
-            onTap: () => _launch('mailto:armandhouecande92@gmail.com'),
+            value: 'armandhouecande9@gmail.com',
+            onTap: () => _launch('mailto:armandhouecande9@gmail.com'),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           _ContactItem(
             icon: Icons.phone_outlined,
             label: 'Téléphone',
             value: '+229 01 91 43 51 31',
-            onTap: () => _launch('tel:+22901914351'),
+            onTap: () => _launch('tel:+2290191435131'),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
           _ContactItem(
             icon: Icons.location_on_outlined,
             label: 'Localisation',
             value: 'Abomey-Calavi, Bénin',
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 24),
 
           // Social links
           Wrap(
@@ -147,12 +168,12 @@ class _ContactSectionState extends State<ContactSection> {
             runSpacing: 12,
             children: [
               _SocialButton(
-                icon: Icons.work_outlined,
+                icon: FontAwesomeIcons.linkedin,
                 label: 'LinkedIn',
                 url: 'https://www.linkedin.com/in/armand-biljoric-houecande-80769a366',
               ),
               _SocialButton(
-                icon: Icons.code,
+                icon: FontAwesomeIcons.github,
                 label: 'GitHub',
                 url: 'https://github.com/Houecande',
               ),
@@ -212,7 +233,7 @@ class _ContactSectionState extends State<ContactSection> {
                     borderRadius: BorderRadius.circular(12),
                     boxShadow: [
                       BoxShadow(
-                        color: AppColors.cyan.withOpacity(0.25),
+                        color: AppColors.cyan.withValues(alpha: 0.25),
                         blurRadius: 20,
                         offset: const Offset(0, 6),
                       ),
@@ -407,10 +428,10 @@ class _SocialButtonState extends State<_SocialButton> {
           width: 44,
           height: 44,
           decoration: BoxDecoration(
-            color: _hovered ? AppColors.cyan.withOpacity(0.1) : AppColors.bg3,
+            color: _hovered ? AppColors.cyan.withValues(alpha: 0.1) : AppColors.bg3,
             shape: BoxShape.circle,
             border: Border.all(
-              color: _hovered ? AppColors.cyan.withOpacity(0.4) : AppColors.border,
+              color: _hovered ? AppColors.cyan.withValues(alpha: 0.4) : AppColors.border,
             ),
           ),
           child: Icon(

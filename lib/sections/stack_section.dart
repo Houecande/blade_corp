@@ -15,7 +15,7 @@ class StackSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: isMobile ? 60 : 100,
       ),
       child: Column(
         children: [
@@ -43,37 +43,26 @@ class StackSection extends StatelessWidget {
               : Column(
                   children: [
                     Row(
-                      children: stackCategories.take(2).toList().asMap().entries.map((e) {
-                        return Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              right: e.key == 0 ? 12 : 0,
-                              left: e.key == 1 ? 12 : 0,
-                            ),
-                            child: FadeInSection(
-                              delayMs: e.key * 100,
-                              child: _StackCard(category: e.value),
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: Padding(padding: const EdgeInsets.only(right: 12), child: FadeInSection(delayMs: 0, child: _StackCard(category: stackCategories[0])))),
+                        Expanded(child: Padding(padding: const EdgeInsets.only(left: 12), child: FadeInSection(delayMs: 100, child: _StackCard(category: stackCategories[1])))),
+                      ],
                     ),
                     const SizedBox(height: 24),
                     Row(
-                      children: stackCategories.skip(2).toList().asMap().entries.map((e) {
-                        return Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              right: e.key == 0 ? 12 : 0,
-                              left: e.key == 1 ? 12 : 0,
-                            ),
-                            child: FadeInSection(
-                              delayMs: (e.key + 2) * 100,
-                              child: _StackCard(category: e.value),
-                            ),
-                          ),
-                        );
-                      }).toList(),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: Padding(padding: const EdgeInsets.only(right: 12), child: FadeInSection(delayMs: 200, child: _StackCard(category: stackCategories[2])))),
+                        Expanded(child: Padding(padding: const EdgeInsets.only(left: 12), child: FadeInSection(delayMs: 300, child: _StackCard(category: stackCategories[3])))),
+                      ],
+                    ),
+                    const SizedBox(height: 24),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(child: Padding(padding: const EdgeInsets.only(right: 12), child: FadeInSection(delayMs: 400, child: _StackCard(category: stackCategories[4])))),
+                      ],
                     ),
                   ],
                 ),
@@ -108,7 +97,7 @@ class _StackCardState extends State<_StackCard> {
           color: AppColors.card,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: _hovered ? AppColors.cyan.withOpacity(0.2) : AppColors.border,
+            color: _hovered ? AppColors.cyan.withValues(alpha: 0.2) : AppColors.border,
           ),
         ),
         child: Column(
@@ -175,7 +164,7 @@ class _StackChipState extends State<_StackChip> {
           color: _hovered ? AppColors.bg3 : AppColors.bg,
           borderRadius: BorderRadius.circular(50),
           border: Border.all(
-            color: _hovered ? AppColors.cyan.withOpacity(0.3) : AppColors.border,
+            color: _hovered ? AppColors.cyan.withValues(alpha: 0.3) : AppColors.border,
           ),
         ),
         child: Row(

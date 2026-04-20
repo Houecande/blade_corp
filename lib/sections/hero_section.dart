@@ -109,8 +109,8 @@ class _HeroSectionState extends State<HeroSection>
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
-                border: Border.all(color: AppColors.cyan.withOpacity(0.3)),
-                color: AppColors.cyan.withOpacity(0.07),
+                border: Border.all(color: AppColors.cyan.withValues(alpha: 0.3)),
+                color: AppColors.cyan.withValues(alpha: 0.07),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -134,7 +134,7 @@ class _HeroSectionState extends State<HeroSection>
             Text(
               "L'alliance du",
               style: GoogleFonts.syne(
-                fontSize: isMobile ? 36 : 52,
+                fontSize: isMobile ? 32 : 52,
                 fontWeight: FontWeight.w800,
                 color: AppColors.text,
                 height: 1.1,
@@ -150,7 +150,7 @@ class _HeroSectionState extends State<HeroSection>
                     colors: [AppColors.cyan, Color(0xFF60A5FA)],
                   ),
                   style: GoogleFonts.syne(
-                    fontSize: isMobile ? 36 : 52,
+                    fontSize: isMobile ? 32 : 52,
                     fontWeight: FontWeight.w800,
                     height: 1.1,
                   ),
@@ -158,7 +158,7 @@ class _HeroSectionState extends State<HeroSection>
                 Text(
                   'et du ',
                   style: GoogleFonts.syne(
-                    fontSize: isMobile ? 36 : 52,
+                    fontSize: isMobile ? 32 : 52,
                     fontWeight: FontWeight.w800,
                     color: AppColors.text,
                     height: 1.1,
@@ -170,26 +170,26 @@ class _HeroSectionState extends State<HeroSection>
                     colors: [AppColors.violet, Color(0xFFA78BFA)],
                   ),
                   style: GoogleFonts.syne(
-                    fontSize: isMobile ? 36 : 52,
+                    fontSize: isMobile ? 32 : 52,
                     fontWeight: FontWeight.w800,
                     height: 1.1,
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
 
             // Subtitle
             Text(
               'Je conçois des expériences numériques esthétiques et performantes. Une approche hybride pour des produits qui marquent les esprits.',
               style: TextStyle(
                 color: AppColors.muted,
-                fontSize: 15,
-                height: 1.7,
+                fontSize: 14,
+                height: 1.6,
               ),
               textAlign: isMobile ? TextAlign.center : TextAlign.left,
             ),
-            const SizedBox(height: 36),
+            const SizedBox(height: 28),
 
             // CTA Buttons
             Wrap(
@@ -261,7 +261,7 @@ class _HeroSectionState extends State<HeroSection>
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: AppColors.violet.withOpacity(0.3),
+                          color: AppColors.violet.withValues(alpha: 0.3),
                           blurRadius: 60,
                           spreadRadius: 10,
                         ),
@@ -285,8 +285,7 @@ class _HeroSectionState extends State<HeroSection>
                         end: Alignment.bottomRight,
                       ),
                     ),
-                    // Replace ClipOval > Image.asset('assets/images/profile.jpg')
-                    // when you add your photo
+                    
                     child: ClipOval(
                       child: Image.asset(
                         'assets/images/profile.jpg',
@@ -333,7 +332,7 @@ class _DashedCirclePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = AppColors.violet.withOpacity(0.3)
+      ..color = AppColors.violet.withValues(alpha: 0.3)
       ..strokeWidth = 1.5
       ..style = PaintingStyle.stroke;
 
@@ -380,7 +379,7 @@ class _FloatingBadge extends StatelessWidget {
         border: Border.all(color: AppColors.border),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.15),
+            color: color.withValues(alpha: 0.15),
             blurRadius: 20,
             offset: const Offset(0, 4),
           ),
@@ -393,7 +392,7 @@ class _FloatingBadge extends StatelessWidget {
             width: 32,
             height: 32,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.15),
+              color: color.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(icon, color: color, size: 16),

@@ -8,6 +8,7 @@ class ExpertiseSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 800;
+    final crossCount = isMobile ? 1 : (MediaQuery.of(context).size.width < 1200 ? 2 : 3);
 
     final expertises = [
       _ExpertiseData(
@@ -35,7 +36,7 @@ class ExpertiseSection extends StatelessWidget {
         icon: Icons.memory_outlined,
         title: 'Intégration Technique',
         description:
-            "Pont entre le design et la technique. APIs REST, backend Python/FastAPI, intégration pixel-perfect tout en optimisant les performances.",
+            "Pont entre le design et la technique. Backend Python/FastAPI, intégration pixel-perfect tout en optimisant les performances.",
         tags: ['Python', 'FastAPI', 'Java', 'VB.NET'],
       ),
     ];
@@ -45,7 +46,7 @@ class ExpertiseSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 24 : 80,
-        vertical: 100,
+        vertical: isMobile ? 60 : 100,
       ),
       child: Column(
         children: [
@@ -138,13 +139,13 @@ class _ExpertiseCardState extends State<_ExpertiseCard> {
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
             color: _hovered
-                ? AppColors.cyan.withOpacity(0.25)
+                ? AppColors.cyan.withValues(alpha: 0.25)
                 : AppColors.border,
           ),
           boxShadow: _hovered
               ? [
                   BoxShadow(
-                    color: AppColors.cyan.withOpacity(0.06),
+                    color: AppColors.cyan.withValues(alpha: 0.06),
                     blurRadius: 30,
                     offset: const Offset(0, 10),
                   )

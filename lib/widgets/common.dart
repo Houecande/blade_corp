@@ -87,21 +87,27 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 700;
     return Column(
       children: [
         Text(
           title,
           style: GoogleFonts.syne(
-            fontSize: 42,
+            fontSize: isMobile ? 32 : 42,
             fontWeight: FontWeight.w800,
             color: AppColors.text,
+            height: 1.1,
           ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 12),
         Text(
           subtitle,
-          style: const TextStyle(color: AppColors.muted, fontSize: 15, height: 1.6),
+          style: TextStyle(
+            color: AppColors.muted,
+            fontSize: isMobile ? 14 : 15,
+            height: 1.6,
+          ),
           textAlign: TextAlign.center,
         ),
       ],
@@ -144,14 +150,14 @@ class _HoverCardState extends State<HoverCard> {
           borderRadius: BorderRadius.circular(widget.borderRadius),
           border: Border.all(
             color: _hovered
-                ? AppColors.cyan.withOpacity(0.3)
+                ? AppColors.cyan.withValues(alpha: 0.3)
                 : AppColors.border,
             width: 1,
           ),
           boxShadow: _hovered
               ? [
                   BoxShadow(
-                    color: AppColors.cyan.withOpacity(0.08),
+                    color: AppColors.cyan.withValues(alpha: 0.08),
                     blurRadius: 24,
                     offset: const Offset(0, 8),
                   )
@@ -227,8 +233,8 @@ class _GradientButtonState extends State<GradientButton> {
           decoration: widget.outlined
               ? BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: AppColors.text.withOpacity(0.4)),
-                  color: _hovered ? AppColors.text.withOpacity(0.05) : Colors.transparent,
+                  border: Border.all(color: AppColors.text.withValues(alpha: 0.4)),
+                  color: _hovered ? AppColors.text.withValues(alpha: 0.05) : Colors.transparent,
                 )
               : BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
@@ -236,7 +242,7 @@ class _GradientButtonState extends State<GradientButton> {
                   boxShadow: _hovered
                       ? [
                           BoxShadow(
-                            color: AppColors.cyan.withOpacity(0.35),
+                            color: AppColors.cyan.withValues(alpha: 0.35),
                             blurRadius: 20,
                             offset: const Offset(0, 6),
                           )

@@ -54,6 +54,7 @@ class AppTheme {
 const navItems = ['Expertise', 'Projets', 'Stack', 'Process', 'Contact'];
 
 // Scroll keys
+final accueilKey = GlobalKey();
 final expertiseKey = GlobalKey();
 final projetsKey = GlobalKey();
 final stackKey = GlobalKey();
