@@ -32,21 +32,6 @@ lib/
 ```
 
 
-
-## 🌐 Déploiement sur Vercel
-
-```bash
-# 1. Build
-flutter build web --release
-
-# 2. Dans le dossier build/web/
-# → Connecter à Vercel via GitHub ou drag & drop du dossier
-
-# Ou avec Vercel CLI :
-cd build/web
-vercel --prod
-```
-
 ## 🎨 Personnalisation
 
 - **Couleurs** → `lib/theme.dart` → `AppColors`
